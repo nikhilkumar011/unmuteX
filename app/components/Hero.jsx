@@ -43,7 +43,7 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <a
-              href="https://chat.whatsapp.com/Ip7y9cyIgZs2QmzycEo2Bj"
+              href="https://chat.whatsapp.com/LFfWRMhON031qK6OjeFa3k"
               className="w-full sm:w-auto inline-flex justify-center text-white dark:text-zinc-900 bg-zinc-900 dark:bg-white px-7 py-3 rounded-full text-sm font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors"
             >
               Join the Community
