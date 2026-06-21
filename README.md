@@ -1,0 +1,84 @@
+# unmuteX
+
+unmuteX is a Next.js 16 landing page and community platform for public speaking practice. It presents the brand story, founder and team spotlight, program journey, product features, testimonials, and a feedback flow for collecting community responses.
+
+## What is inside
+
+- Hero-led marketing homepage with animated section reveals
+- Founder and core team showcase
+- Journey and problem/solution storytelling sections
+- Feature, audience, and testimonial blocks
+- Feedback list and feedback submission form
+- MongoDB-backed API with an optional local JSON feedback mode for isolated development
+
+## Tech Stack
+
+- Next.js 16 App Router
+- React 19
+- Tailwind CSS 4
+- MongoDB and Mongoose
+- motion, react-icons, react-hot-toast, and react-loading-indicators
+
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Create a `.env.local` file in the project root:
+
+```bash
+MONGODB_URI=your_mongodb_connection_string
+USE_LOCAL_DB=true
+```
+
+`MONGODB_URI` is required when using the live MongoDB path. Set `USE_LOCAL_DB=true` if you want feedback submissions to stay inside `feedback-local.json` during development.
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Available Scripts
+
+- `npm run dev` - start the local development server
+- `npm run build` - create a production build
+- `npm run start` - run the production server
+- `npm run lint` - run ESLint
+
+## Project Structure
+
+```text
+app/
+	api/Feedback/route.js   # Feedback API route
+	components/             # Landing page sections
+	layout.js               # Root layout
+	page.js                 # Homepage composition
+lib/
+	db.js                   # MongoDB connection helper
+	models/Feedback.js      # Feedback schema
+public/videos/            # Media assets used on the site
+```
+
+## Feedback Storage
+
+The feedback API supports two modes:
+
+- Production mode uses MongoDB through `MONGODB_URI`
+- Local mode uses `feedback-local.json` when `USE_LOCAL_DB=true`
+
+## Deployment
+
+This project can be deployed on Vercel or any platform that supports Node.js and Next.js App Router. For production, make sure `MONGODB_URI` is set in your hosting environment.
+
+## Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Next.js Deployment Guide](https://nextjs.org/docs/app/building-your-application/deploying)
