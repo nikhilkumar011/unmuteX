@@ -10,6 +10,7 @@ import WhoFor from "./components/WhoFor";
 import Testimonials from "./components/Testimonials";
 import FeedbackList from "./components/FeedbackList";
 import Feedback from "./components/Feedback";
+import BookCall from "./components/BookCall";
 
 export default function Home() {
   const [triggerRefresh, setTriggerRefresh] = useState(0);
@@ -48,6 +49,9 @@ export default function Home() {
       {/* Starting Section: Meet the Founder & Core Team */}
        <div className="reveal-on-scroll">
         <Features />
+      </div>
+       <div className="reveal-on-scroll">
+       <BookCall/>
       </div>
       
       {/* Visual Impact Steps Roadmap */}
