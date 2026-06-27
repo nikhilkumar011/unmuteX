@@ -94,24 +94,12 @@ const teamMembers = [
     linkedin: "#",
     instagram: "#",
   },
-  {
-    name: "Grita",
-    role: "Workshop Director",
-    bio: "Hii my name is Grita Lamba Unmute X has helped me improve my confidence and communication skills. Everyone is so cooperative and encouraging here. enjoy being the part of this community.",
-    tagline: "Fun prompts break ice faster than advice.",
-    image: "../gritha.jpeg",
-    glowColor: "rgba(255, 222, 0, 0.85)",
-    shadowColor: "rgba(255, 222, 0, 0.4)",
-    textColor: "text-yellow-400",
-    glowClass: "bg-yellow-500/20",
-    linkedin: "#",
-    instagram: "#",
-  },
+
   {
     name: "Sonali Sharma",
     role: "Workshop Director",
     bio: "From Procrastination to Progress. Hi, I'm Sonali. For years, I struggled with procrastination and self-doubt. I often delayed taking action, overthought simple decisions, and let valuable opportunities slip away because I wasn't confident enough to step forward. Joining UnmuteX changed that. Through consistent practice, constructive feedback, and a supportive community, I learned to overcome procrastination, communicate with confidence, and take action without waiting for the 'perfect' moment. Today, I am more confident in expressing my thoughts, embracing challenges, and making the most of every opportunity that comes my way.",
-    tagline: "Fun prompts break ice faster than advice.",
+    tagline: "From Procastnattion to Progress",
     image: "../sonali.jpeg",
     glowColor: "rgba(255, 222, 0, 0.85)",
     shadowColor: "rgba(255, 222, 0, 0.4)",
@@ -247,7 +235,7 @@ const AboutTeam = () => {
             })}
           </div>
         </div>
-        
+
 
         {/* ─── THEY STARTED JUST LIKE YOU ─── */}
         <div className="mt-20 pt-16 border-t border-zinc-900">
@@ -302,11 +290,10 @@ const AboutTeam = () => {
                   onClick={() =>
                     setActiveIndex(activeIndex === index ? null : index)
                   }
-                  className={`relative cursor-pointer overflow-hidden rounded-[1.8rem] border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none h-full flex-shrink-0 snap-center ${
-                    isFocused
+                  className={`relative cursor-pointer overflow-hidden rounded-[1.8rem] border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none h-full flex-shrink-0 snap-center ${isFocused
                       ? "w-[285px] lg:w-[32%] border-white bg-zinc-900"
                       : "w-[125px] lg:w-[13.5%] border-zinc-800 bg-zinc-950"
-                  }`}
+                    }`}
                   style={{
                     transform: isMobile
                       ? "none"
@@ -328,11 +315,10 @@ const AboutTeam = () => {
                     <img
                       src={member.image}
                       alt={member.name}
-                      className={`w-full h-full object-cover object-top transition-all duration-700 ease-out ${
-                        isFocused
+                      className={`w-full h-full object-cover object-top transition-all duration-700 ease-out ${isFocused
                           ? "brightness-[1.25] contrast-[1.08] scale-102 saturate-[1.1]"
                           : "brightness-[1.15] contrast-[1.02] saturate-[1.05] opacity-100"
-                      }`}
+                        }`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/85" />
                   </div>
@@ -359,16 +345,15 @@ const AboutTeam = () => {
                         {member.name}
                       </h4>
                       <div
-                        className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform origin-bottom overflow-hidden ${
-                          isFocused
-                            ? "opacity-100 max-h-[160px] translate-y-0 mt-3 pt-3 border-t border-white/10"
+                        className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform origin-bottom overflow-hidden ${isFocused
+                            ? "opacity-100 max-h-[220px] overflow-y-auto scrollbar-thin translate-y-0 mt-3 pt-3 border-t border-white/10"
                             : "opacity-0 max-h-0 translate-y-4 pointer-events-none"
-                        }`}
+                          }`}
                       >
                         <p className="text-[10px] italic font-light text-white/70 mt-1.5 leading-snug line-clamp-1">
                           &quot;{member.tagline}&quot;
                         </p>
-                        <p className="text-[10px] text-zinc-300 font-light mt-1.5 leading-relaxed line-clamp-3">
+                        <p className="text-[10px] text-zinc-300 font-light mt-1.5 leading-relaxed">
                           {member.bio}
                         </p>
                       </div>

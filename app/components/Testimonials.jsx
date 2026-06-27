@@ -19,26 +19,10 @@ const testimonials = [
       "UnmuteX helped me crack my placement interviews without freezing. The real-time live activities changed how I think and articulate under pressure.",
   },
   {
-    id: 3,
-    name: "Nikhil",
-    role: "College Student",
-    video: "https://res.cloudinary.com/dm8xxqdgg/video/upload/q_auto/f_auto/v1780219503/nikhil_zq8tzr.mp4",
-    quote:
-      "The live practice sessions changed everything. Being surrounded by supportive peers who are all trying to grow made me speak without hesitation.",
-  },
-  {
     id: 4,
     name: "Sonia",
     role: "College Student",
     video: "https://res.cloudinary.com/dm8xxqdgg/video/upload/q_auto/f_auto/v1780220175/sonia_zdbkvo.mp4",
-    quote:
-      "The live practice sessions changed everything. Being surrounded by supportive peers who are all trying to grow made me speak without hesitation.",
-  },
-  {
-    id: 5,
-    name: "Akriti",
-    role: "College Student",
-    video: "https://res.cloudinary.com/dm8xxqdgg/video/upload/q_auto/f_auto/v1780220206/akriti_1_ipwlxm.mp4",
     quote:
       "The live practice sessions changed everything. Being surrounded by supportive peers who are all trying to grow made me speak without hesitation.",
   },
