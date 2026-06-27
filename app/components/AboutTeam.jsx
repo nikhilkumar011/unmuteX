@@ -98,7 +98,7 @@ const teamMembers = [
   {
     name: "Sonali Sharma",
     role: "Workshop Director",
-    bio: "From Procrastination to Progress. Hi, I'm Sonali. For years, I struggled with procrastination and self-doubt. I often delayed taking action, overthought simple decisions, and let valuable opportunities slip away because I wasn't confident enough to step forward. Joining UnmuteX changed that. Through consistent practice, constructive feedback, and a supportive community, I learned to overcome procrastination, communicate with confidence, and take action without waiting for the 'perfect' moment. Today, I am more confident in expressing my thoughts, embracing challenges, and making the most of every opportunity that comes my way.",
+    bio: "Hi, I'm Sonali. I struggled with procrastination and self-doubt for years. Joining UnmuteX helped me build confidence, communicate better, and take action. Today, I'm more confident in expressing my thoughts.",
     tagline: "From Procastnattion to Progress",
     image: "../sonali.jpeg",
     glowColor: "rgba(255, 222, 0, 0.85)",
