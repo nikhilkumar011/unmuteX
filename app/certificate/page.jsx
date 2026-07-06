@@ -13,8 +13,8 @@ const Page = () => {
     setError('');
     setResult(null);
 
-    if (!name.trim() || !mobileNumber.trim()) {
-      setError('Please enter both name and mobile number.');
+    if (!name.trim()) {
+      setError('Please enter name');
       return;
     }
 
@@ -110,7 +110,7 @@ const Page = () => {
           <div className='mt-6 bg-white dark:bg-black rounded-2xl shadow-lg dark:shadow-none border border-gray-200 dark:border-gray-800 p-8'>
             <div className='mb-6 text-center'>
               <h2 className='text-xl font-semibold text-black dark:text-white'>{result.name}</h2>
-              <p className='text-sm text-gray-500 dark:text-gray-400'>{result.mobileNumber}</p>
+             
             </div>
 
             {/* Certificate */}

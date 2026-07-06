@@ -3,8 +3,8 @@ import { connectDb } from "@/lib/db";
 
 export default async function Page({ params }) {
     await connectDb();
-    const { id } = await params;
-    const certificate = await Certificate.findById(id);
+    const { name } = await params;
+    const certificate = await Certificate.findOne({name});
 
     if (!certificate) {
         return (
