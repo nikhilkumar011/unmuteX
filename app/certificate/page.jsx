@@ -58,7 +58,7 @@ const Page = () => {
               Get Your Certificate
             </h1>
             <p className='mt-1 text-sm text-gray-500 dark:text-gray-400'>
-              Enter your details to fetch your certificate
+              Enter your details to fetch your certificate (If certificates not getting fetched then try writing your name starting with upper case ex:John Doe)
             </p>
           </div>
 
