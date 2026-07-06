@@ -6,7 +6,7 @@ export async function POST(request) {
 
   const { name } = await request.json();
 
-  if (name) {
+  if (!name) {
     return Response.json(
       { message: "All fields are mandatory" },
       { status: 400 }
