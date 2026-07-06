@@ -4,7 +4,9 @@ import { connectDb } from "@/lib/db";
 export default async function Page({ params }) {
     await connectDb();
     const { name } = await params;
-    const certificate = await Certificate.findOne({name});
+   const certificate = await Certificate.findOne({
+  name: decodeURIComponent(name),
+});
 
     if (!certificate) {
         return (
@@ -50,12 +52,7 @@ export default async function Page({ params }) {
                             {certificate.name}
                         </span>
                     </div>
-                    <div className='flex justify-between items-center px-4 py-3'>
-                        <span className='text-sm text-gray-500 dark:text-gray-400'>Phone</span>
-                        <span className='text-sm font-medium text-black dark:text-white'>
-                            {certificate.mobileNumber}
-                        </span>
-                    </div>
+                    
                 </div>
 
                 <div className='mt-6 flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400'>
