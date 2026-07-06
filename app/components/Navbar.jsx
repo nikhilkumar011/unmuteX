@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
@@ -32,6 +33,7 @@ const Navbar = () => {
     { href: "#whofor", label: "Glimpses" },
     { href: "#testimonials", label: "Testimonials" },
     { href: "#feedback-list", label: "Feedback" },
+    { href:'/certificate', label:"Certificate"}
   ];
 
   return (
@@ -70,8 +72,9 @@ const Navbar = () => {
                 </a>
               </li>
             ))}
+            
           </ul>
-
+          
           {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Theme Toggle */}
