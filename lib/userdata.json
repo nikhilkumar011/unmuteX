@@ -24,7 +24,7 @@
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375155/kumkum_rpsyox.png"
   },
   {
-    "name": "Shlok",
+    "name": "Shlok Gupta",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375310/shlok_sj9srn.png"
   },
   {
@@ -40,11 +40,11 @@
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375257/divyanshi_wyxv15.png"
   },
   {
-    "name": "Tulsiram",
+    "name": "Tulsi Ram",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375323/tulsiram_ikocu1.png"
   },
   {
-    "name": "Utkarsh Tiberewal",
+    "name": "Utkarsh Tibrewal",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375326/utkarsh_cloq3v.png"
   },
   {
@@ -68,7 +68,7 @@
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375324/sourav_rajput_vfhn1d.png"
   },
   {
-    "name": "Neha Vats",
+    "name": "Neha Sharma",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375285/neha_vats_ugposi.png"
   },
   {
@@ -76,7 +76,7 @@
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375320/sourav_pareek_cdc97s.png"
   },
   {
-    "name": "Adarsh",
+    "name": "Adarsh Tiwari",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375148/adarsh_azidvt.png"
   },
   {
@@ -96,11 +96,11 @@
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375286/raj_wzuo9g.png"
   },
   {
-    "name": "Anna Singh",
+    "name": "Anuj Singh Kushwaha",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375164/anna_singh_fp76as.png"
   },
   {
-    "name": "Prajwal Bopare",
+    "name": "Prajwal Jain",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375293/prajwal_bopare_dksb4c.png"
   },
   {
@@ -108,7 +108,7 @@
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375162/akhilesh_bnt5eg.png"
   },
   {
-    "name": "Varsha",
+    "name": "Varsha Prajapati",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375332/varsha_he67l5.png"
   },
   {
@@ -178,5 +178,99 @@
   {
     "name": "Riya Bharti",
     "certificate": "https://res.cloudinary.com/dm8xxqdgg/image/upload/fl_attachment/v1783375292/riya_bharti_ihfwyx.png"
+  },
+  {
+    "name":"Hrushikesh Ray"
+  },
+  {
+    "name":"Kratika Gupta"
+  },
+  {
+    "name":"Avinash Verma"
+  },
+  {
+    "name":"Mann Gupta"
+  },
+  {
+    "name":"Rohan Choudhary"
+  },
+  {
+    "name":"Shruti Rathore"
+  },
+  {
+    "name":"Garima Bhatia"
+  },
+  {
+    "name":"Manan Awadhiya"
+  },
+  {
+    "name":"Pushkar Malik"
+  },
+  {
+    "name":"Urvashi Sharnagat"
+  },
+  {
+   "name":"Gyaneswari"
+  },
+  {
+    "name":"Tanvir Alam"
+  },
+  {
+    "name":"Hameed"
+  },
+  {
+    "name":"Guransh Singh Anand"
+  },
+  {
+    "name":"Kshitij Kumar Singh"
+  },
+  {
+    "name":"Krishna Deepak"
+  },
+  {
+    "name":"Priyanka Dharmul"
+  },
+  {
+    "name":"Arpita Pandey"
+  },
+  {
+    "name":"Shubham Satpute"
+  },
+  {
+    "name":"Divya"
+  },
+  {
+    "name":"Sharwari Sambare"
+  },
+  {
+    "name":"Vanshika Singh"
+  },
+  {
+    "name":"Alok Kishor"
+  },
+  {
+    "name":"Rishi Gupta"
+  },
+  {
+    "name":"Arshpreet"
+  },
+  {
+    "name":"Sujal Patel"
+  },
+  {
+    "name":"Yuvraj Singh"
+  },
+  {
+    "name":"Sanskriti Nigam"
+  },
+  {
+    "name":"Arth Jaiswal"
+  },
+  {
+    "name":"Anish Tiwari"
   }
+
+  
+
+
 ]
