@@ -40,7 +40,7 @@ const Footer = () => {
           </a>
 
           <a
-            href="https://wa.me/918269650227?text=I%27m%20ready%20to%20improve%20my%20communication%20skills.%20Please%20guide%20me%20with%20the%20next%20steps."
+            href="https://wa.me/918269650227?text=Hi%20I'm%20ready%20to%20send%20my%2030-second%20introduction%20video%20and%20join%20*UnmuteX*."
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:bg-zinc-955 dark:hover:bg-white hover:text-white dark:hover:text-zinc-955 hover:-translate-y-0.5 transition-all duration-300 shadow-xs cursor-pointer"
