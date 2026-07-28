@@ -164,7 +164,7 @@ const Navbar = () => {
             ))}
             <div className="mt-2 pt-4 border-t border-zinc-100 dark:border-zinc-800">
               <a
-                href="https://chat.whatsapp.com/Ip7y9cyIgZs2QmzycEo2Bj"
+                href="https://wa.me/918269650227?text=I%27m%20ready%20to%20improve%20my%20communication%20skills.%20Please%20guide%20me%20with%20the%20next%20steps."
                 onClick={() => setMenuOpen(false)}
                 className="w-full flex items-center justify-center bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-semibold text-sm px-5 py-3.5 rounded-2xl hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all active:scale-95 shadow-sm"
               >
