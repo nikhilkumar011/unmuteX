@@ -13,7 +13,6 @@ const Feedback = ({ onSuccess }) => {
   const [avatar, setAvatar] = useState("");
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  // Handle Custom Image Upload (Base64 conversion)
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -22,14 +21,13 @@ const Feedback = ({ onSuccess }) => {
       }
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(reader.result); // Base64 data URL
+        setAvatar(reader.result);
         toast.success("Profile photo uploaded!");
       };
       reader.readAsDataURL(file);
     }
   };
 
-  // Submit Feedback
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -62,14 +60,12 @@ const Feedback = ({ onSuccess }) => {
 
       toast.success("Feedback shared successfully!");
 
-      // Clear state
       setName("");
       setRole("");
       setFeedback("");
       setRating(5);
       setAvatar("");
 
-      // Trigger list refresh
       if (onSuccess) {
         onSuccess();
       }
@@ -83,15 +79,18 @@ const Feedback = ({ onSuccess }) => {
   return (
     <section
       id="feedback"
-      className="bg-white dark:bg-zinc-950 py-16 px-6 border-b border-zinc-100/60 dark:border-zinc-900/60 transition-colors duration-300"
+      className="bg-white dark:bg-zinc-950 py-16 px-6 border-b border-zinc-200 dark:border-zinc-900 transition-colors duration-300"
     >
       <Toaster position="bottom-center" />
 
       <div className="max-w-7xl mx-auto">
         {/* Form Container */}
-        <div className="max-w-2xl mx-auto bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800/80 rounded-[2.5rem] p-10 md:p-12 shadow-[0_30px_70px_rgba(0,0,0,0.015)] dark:shadow-[0_30px_70px_rgba(0,0,0,0.4)]">
+        <div className="max-w-2xl mx-auto bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 p-10 md:p-12">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-zinc-955 dark:text-white tracking-tight mb-2">
+            <span className="inline-flex items-center px-4 py-1.5 border border-orange-600/40 dark:border-orange-500/40 text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-500 mb-4">
+              Add Your Voice
+            </span>
+            <h2 className="text-2xl font-bold text-zinc-950 dark:text-white tracking-tight mb-2">
               Share Your Experience
             </h2>
             <p className="text-zinc-400 dark:text-zinc-500 text-xs font-light">
@@ -111,7 +110,7 @@ const Feedback = ({ onSuccess }) => {
                   placeholder="e.g. Rahul"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-100 dark:border-zinc-800/80 rounded-2xl px-5 py-4 outline-none text-zinc-800 dark:text-zinc-100 text-sm font-light placeholder:text-zinc-400 focus:bg-white dark:focus:bg-zinc-900 focus:border-zinc-950 dark:focus:border-white focus:ring-1 focus:ring-zinc-950 dark:focus:ring-white transition-all duration-200"
+                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 px-5 py-4 outline-none text-zinc-800 dark:text-zinc-100 text-sm font-light placeholder:text-zinc-400 focus:bg-white dark:focus:bg-zinc-900 focus:border-orange-600 dark:focus:border-orange-500 transition-all duration-200"
                 />
               </div>
 
@@ -124,13 +123,13 @@ const Feedback = ({ onSuccess }) => {
                   placeholder="e.g. School Student, Founder"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-100 dark:border-zinc-800/80 rounded-2xl px-5 py-4 outline-none text-zinc-800 dark:text-zinc-100 text-sm font-light placeholder:text-zinc-400 focus:bg-white dark:focus:bg-zinc-900 focus:border-zinc-950 dark:focus:border-white focus:ring-1 focus:ring-zinc-950 dark:focus:ring-white transition-all duration-200"
+                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 px-5 py-4 outline-none text-zinc-800 dark:text-zinc-100 text-sm font-light placeholder:text-zinc-400 focus:bg-white dark:focus:bg-zinc-900 focus:border-orange-600 dark:focus:border-orange-500 transition-all duration-200"
                 />
               </div>
             </div>
 
             {/* Interactive Stars Selector & Photo Upload Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center bg-zinc-50/50 dark:bg-zinc-950/40 p-6 rounded-2xl border border-zinc-100/50 dark:border-zinc-800/60">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center bg-zinc-50 dark:bg-zinc-950/60 p-6 border border-zinc-200 dark:border-zinc-800">
               {/* Star Rating Selection */}
               <div>
                 <label className="block text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-2">
@@ -149,7 +148,7 @@ const Feedback = ({ onSuccess }) => {
                       <svg
                         className={`w-6 h-6 ${
                           star <= (hoverRating || rating)
-                            ? "text-amber-400 fill-amber-400"
+                            ? "text-orange-500 fill-orange-500"
                             : "text-zinc-200 dark:text-zinc-800"
                         }`}
                         viewBox="0 0 24 24"
@@ -171,7 +170,7 @@ const Feedback = ({ onSuccess }) => {
                   Profile Photo (Optional)
                 </label>
                 <div className="flex items-center gap-3">
-                  <label className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-4 py-2.5 rounded-full text-xs font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-700 active:scale-95 transition-all shadow-xs cursor-pointer inline-block">
+                  <label className="bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-4 py-2.5 text-xs font-bold uppercase tracking-wide hover:border-orange-600 dark:hover:border-orange-500 hover:text-orange-600 dark:hover:text-orange-500 active:scale-95 transition-all cursor-pointer inline-block">
                     Choose Photo
                     <input
                       type="file"
@@ -186,12 +185,12 @@ const Feedback = ({ onSuccess }) => {
                       <img
                         src={avatar}
                         alt="Preview"
-                        className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-700 object-cover shadow-xs"
+                        className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-700 object-cover"
                       />
                       <button
                         type="button"
                         onClick={() => setAvatar("")}
-                        className="absolute -top-1 -right-1 bg-zinc-950 text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] hover:bg-zinc-800 transition-colors shadow-sm font-bold"
+                        className="absolute -top-1 -right-1 bg-orange-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] hover:bg-orange-500 transition-colors font-bold"
                       >
                         ×
                       </button>
@@ -215,7 +214,7 @@ const Feedback = ({ onSuccess }) => {
                 rows="4"
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                className="w-full bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-100 dark:border-zinc-800/80 rounded-2xl px-5 py-4 outline-none text-zinc-800 dark:text-zinc-100 text-sm font-light placeholder:text-zinc-400 focus:bg-white dark:focus:bg-zinc-900 focus:border-zinc-950 dark:focus:border-white focus:ring-1 focus:ring-zinc-950 dark:focus:ring-white transition-all duration-200 resize-none"
+                className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 px-5 py-4 outline-none text-zinc-800 dark:text-zinc-100 text-sm font-light placeholder:text-zinc-400 focus:bg-white dark:focus:bg-zinc-900 focus:border-orange-600 dark:focus:border-orange-500 transition-all duration-200 resize-none"
               />
             </div>
 
@@ -224,7 +223,7 @@ const Feedback = ({ onSuccess }) => {
               <button
                 type="submit"
                 disabled={submitLoading}
-                className="w-full sm:w-auto bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 px-10 py-4.5 rounded-full text-sm font-semibold hover:bg-zinc-900 dark:hover:bg-zinc-100 active:scale-95 transition-all duration-200 flex items-center justify-center min-w-[200px] cursor-pointer shadow-md hover:shadow-lg"
+                className="w-full sm:w-auto bg-orange-600 text-white px-10 py-4.5 text-sm font-bold uppercase tracking-wide hover:bg-orange-500 active:scale-95 transition-all duration-200 flex items-center justify-center min-w-[200px] cursor-pointer"
               >
                 {submitLoading ? (
                   <ThreeDot color="currentColor" size="small" />

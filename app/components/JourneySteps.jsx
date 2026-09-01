@@ -37,10 +37,10 @@ const steps = [
     stage: "Stage 4",
     title: "Your Journey Starts",
     desc: "Practice in live sessions, receive feedback, and build lasting confidence.",
-    stageColor: "text-[#993556]",
-    dotBorder: "border-[#993556]",
-    dotGlow: "hover:shadow-[0_0_0_4px_rgba(153,53,86,0.15)]",
-    cardHoverBorder: "hover:border-[#993556]/30",
+    stageColor: "text-orange-600 dark:text-orange-500",
+    dotBorder: "border-orange-600 dark:border-orange-500",
+    dotGlow: "hover:shadow-[0_0_0_4px_rgba(255,74,31,0.15)]",
+    cardHoverBorder: "hover:border-orange-600/30 dark:hover:border-orange-500/30",
     side: "left",
   },
 ];
@@ -87,7 +87,7 @@ function StepItem({ step, index, hoveredIndex, setHoveredIndex }) {
       <div
         className={`
           absolute z-10 w-3.5 h-3.5 rounded-full
-          bg-white dark:bg-[#0a0a0a] border-2 ${step.dotBorder}
+          bg-white dark:bg-zinc-950 border-2 ${step.dotBorder}
           transition-all duration-250
           ${step.dotGlow}
           ${isHovered ? "scale-150" : "scale-100"}
@@ -111,10 +111,10 @@ function StepItem({ step, index, hoveredIndex, setHoveredIndex }) {
       >
         <div
           className={`
-            bg-white dark:bg-[#111]
-            border border-gray-200 dark:border-gray-800
+            bg-white dark:bg-zinc-900/40
+            border border-zinc-200 dark:border-zinc-800
             ${step.cardHoverBorder}
-            rounded-2xl p-5 md:p-7 w-full
+            p-5 md:p-7 w-full
             transition-all duration-250
             ${isHovered ? "md:-translate-y-1 shadow-lg dark:shadow-black/40" : "translate-y-0 shadow-none"}
           `}
@@ -122,7 +122,7 @@ function StepItem({ step, index, hoveredIndex, setHoveredIndex }) {
           <p className={`text-[11px] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-2.5 ${step.stageColor}`}>
             {step.stage}
           </p>
-          <p className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-2 md:mb-2.5 leading-snug">
+          <p className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2 md:mb-2.5 leading-snug tracking-tight">
             {step.title}
           </p>
           <p className={`text-sm md:text-base leading-relaxed transition-colors duration-250 ${isHovered ? "text-gray-600 dark:text-gray-400" : "text-gray-400 dark:text-gray-600"}`}>
@@ -138,15 +138,21 @@ export default function JourneySteps() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <section className="w-full py-16 px-6 bg-white dark:bg-[#0a0a0a]">
+    <section className="w-full py-16 px-6 bg-white dark:bg-zinc-950">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
+          <span className="inline-flex items-center px-4 py-1.5 border border-orange-600/40 dark:border-orange-500/40 text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-500 mb-4">
+            The Process
+          </span>
+          <h2
+            className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white tracking-tight uppercase"
+            style={{ fontFamily: "'Archivo Black', sans-serif" }}
+          >
             How it works
           </h2>
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+          <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
             Your path to confident speaking
           </p>
         </div>
