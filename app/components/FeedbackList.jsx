@@ -4,14 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { ThreeDot } from "react-loading-indicators";
 
-// Helper to render star rating SVGs
 const RatingStars = ({ count }) => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
     stars.push(
       <svg
         key={i}
-        className={`w-4 h-4 ${i <= count ? "text-amber-400 fill-amber-400" : "text-zinc-200 dark:text-zinc-800"}`}
+        className={`w-4 h-4 ${i <= count ? "text-orange-500 fill-orange-500" : "text-zinc-200 dark:text-zinc-800"}`}
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -52,7 +51,6 @@ const FeedbackList = ({ triggerRefresh }) => {
   const handleToggle = () => {
     if (isExpanded) {
       setIsExpanded(false);
-      // Smoothly scroll back to the top of the feedback list section
       const sectionElement = document.getElementById("feedback-list");
       if (sectionElement) {
         sectionElement.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -63,18 +61,21 @@ const FeedbackList = ({ triggerRefresh }) => {
   };
 
   return (
-    <section id="feedback-list" className="bg-white dark:bg-zinc-950 py-16 px-6 border-b border-zinc-100/60 dark:border-zinc-900/60 transition-colors duration-300 overflow-hidden relative">
+    <section id="feedback-list" className="bg-white dark:bg-zinc-950 py-16 px-6 border-b border-zinc-200 dark:border-zinc-900 transition-colors duration-300 overflow-hidden relative">
       <div className="max-w-7xl mx-auto">
         <Toaster position="bottom-center" />
 
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-20 animate-fade-in-up">
-          <p className="text-[11px] uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-4 font-bold">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="inline-flex items-center px-4 py-1.5 border border-orange-600/40 dark:border-orange-500/40 text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-500 mb-5">
             Community Voices
-          </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-zinc-950 dark:text-white tracking-tight mb-6">
+          </span>
+          <h2
+            className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] text-zinc-950 dark:text-white tracking-tight uppercase mb-6"
+            style={{ fontFamily: "'Archivo Black', sans-serif" }}
+          >
             What Members<br />
-            <span className="text-zinc-900 dark:text-zinc-300 font-light">
+            <span className="text-orange-600 dark:text-orange-500">
               Are Saying
             </span>
           </h2>
@@ -90,7 +91,7 @@ const FeedbackList = ({ triggerRefresh }) => {
           </div>
         ) : (
           <div className="w-full">
-            
+
             {/* Collapsible Container with Gradient Fade Overlay */}
             <div className="relative">
               <div
@@ -102,8 +103,7 @@ const FeedbackList = ({ triggerRefresh }) => {
                   {reviews.map((item, index) => (
                     <div
                       key={item._id || index}
-                      className="break-inside-avoid block w-full max-w-md sm:max-w-[320px] mx-auto bg-zinc-50/50 dark:bg-zinc-900/40 border border-zinc-100/80 dark:border-zinc-800/80 rounded-[2.5rem] p-6 sm:p-10 hover:bg-white dark:hover:bg-zinc-900 hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(0,0,0,0.015)] dark:hover:shadow-[0_30px_70px_rgba(0,0,0,0.4)] transition-all duration-500 animate-fade-in-up mb-8"
-                      style={{ animationDelay: `${index * 100}ms` }}
+                      className="break-inside-avoid block w-full max-w-md sm:max-w-[320px] mx-auto bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 p-6 sm:p-10 hover:border-orange-600/40 dark:hover:border-orange-500/40 hover:-translate-y-2 transition-all duration-500 mb-8"
                     >
                       {/* Reviewer Meta Header */}
                       <div className="flex items-center gap-4 mb-6">
@@ -111,16 +111,16 @@ const FeedbackList = ({ triggerRefresh }) => {
                           <img
                             src={item.avatar}
                             alt={item.name}
-                            className="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 object-cover shadow-xs"
+                            className="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 object-cover"
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-base font-bold text-zinc-900 dark:text-white shadow-xs select-none">
+                          <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-base font-bold text-zinc-900 dark:text-white select-none">
                             {item.name ? item.name.charAt(0).toUpperCase() : "?"}
                           </div>
                         )}
 
                         <div className="min-w-0">
-                          <h3 className="text-sm font-semibold text-zinc-900 dark:text-white tracking-tight break-words">
+                          <h3 className="text-sm font-bold text-zinc-900 dark:text-white tracking-tight break-words">
                             {item.name}
                           </h3>
                           <p className="text-[11px] text-zinc-400 dark:text-zinc-500 font-medium break-words">
@@ -136,7 +136,7 @@ const FeedbackList = ({ triggerRefresh }) => {
 
                       {/* Review Text */}
                       <blockquote className="text-zinc-700 dark:text-zinc-200 text-sm font-normal leading-relaxed italic relative">
-                        <span className="text-3xl text-zinc-200 dark:text-zinc-800 font-serif absolute -top-4 -left-2 select-none">“</span>
+                        <span className="text-3xl text-orange-600/30 dark:text-orange-500/30 font-serif absolute -top-4 -left-2 select-none">“</span>
                         <span className="relative z-10 pl-4 block break-words">
                           {item.feedback}
                         </span>
@@ -157,7 +157,7 @@ const FeedbackList = ({ triggerRefresh }) => {
               <div className="flex justify-center mt-12 relative z-20">
                 <button
                   onClick={handleToggle}
-                  className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-100 active:scale-95 px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg flex items-center gap-2"
+                  className="bg-orange-600 text-white hover:bg-orange-500 active:scale-95 px-8 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-2"
                 >
                   {isExpanded ? (
                     <>
