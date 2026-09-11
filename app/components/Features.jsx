@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Users,
   Swords,
@@ -12,7 +12,6 @@ import {
   LifeBuoy,
   UserCheck,
   Target,
-  ChevronDown,
 } from 'lucide-react'
 
 const CHANNELS = [
@@ -130,8 +129,58 @@ const WaveBars = () => (
 )
 
 const Features = () => {
-  const [openId, setOpenId] = useState(null)
-  const toggle = (id) => setOpenId((current) => (current === id ? null : id))
+  // ids of channel sections that have scrolled into view at least once —
+  // once revealed they stay revealed, no clicking required.
+  const [revealedIds, setRevealedIds] = useState(() => new Set())
+  // whichever channel section is currently most in view, for the sticky nav.
+  const [activeId, setActiveId] = useState(CHANNELS[0].id)
+
+  const sectionRefs = useRef({})
+
+  useEffect(() => {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.dataset.channelId
+            setRevealedIds((prev) => {
+              if (prev.has(id)) return prev
+              const next = new Set(prev)
+              next.add(id)
+              return next
+            })
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
+    )
+
+    const activeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.dataset.channelId)
+          }
+        })
+      },
+      { threshold: 0, rootMargin: '-45% 0px -45% 0px' }
+    )
+
+    Object.values(sectionRefs.current).forEach((el) => {
+      if (!el) return
+      revealObserver.observe(el)
+      activeObserver.observe(el)
+    })
+
+    return () => {
+      revealObserver.disconnect()
+      activeObserver.disconnect()
+    }
+  }, [])
+
+  const scrollToChannel = (id) => {
+    sectionRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <section
@@ -148,30 +197,38 @@ const Features = () => {
           animation-play-state: paused;
         }
         .activity-card:hover .wave-bar,
-        .activity-card:focus-within .wave-bar {
+        .activity-card:focus-within .wave-bar,
+        .feature-section.in-view .activity-card .wave-bar {
           animation-play-state: running;
         }
-        .accordion-content {
-          display: grid;
-          grid-template-rows: 0fr;
-          transition: grid-template-rows 0.35s ease;
+
+        .feature-section {
+          opacity: 0;
+          transform: translateY(28px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .accordion-content.open {
-          grid-template-rows: 1fr;
+        .feature-section.in-view {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .accordion-content > div {
-          overflow: hidden;
-          min-height: 0;
+
+        .reveal-item {
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .chevron {
-          transition: transform 0.25s ease;
+        .feature-section.in-view .reveal-item {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .chevron.open {
-          transform: rotate(180deg);
-        }
+
         @media (prefers-reduced-motion: reduce) {
           .wave-bar { animation: none !important; }
-          .accordion-content, .chevron { transition: none !important; }
+          .feature-section, .reveal-item {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+          }
         }
       `}</style>
 
@@ -201,130 +258,171 @@ const Features = () => {
           </p>
         </div>
 
-        {/* Accordion */}
-        <div className="border border-zinc-200 rounded-sm divide-y divide-zinc-200 mb-2">
-          {CHANNELS.map((channel) => {
-            const isOpen = openId === channel.id
-            return (
-              <div key={channel.id}>
-                <button
-                  onClick={() => toggle(channel.id)}
-                  aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-5 text-left hover:bg-zinc-50 transition-colors duration-200"
+        <div className="grid md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr] gap-8 lg:gap-16">
+
+          {/* Sticky scrollspy nav — purely a "where am I" indicator + optional jump-to, not required to interact */}
+          <nav className="hidden md:block">
+            <ul className="sticky top-24 space-y-1">
+              {CHANNELS.map((channel) => {
+                const isActive = activeId === channel.id
+                return (
+                  <li key={channel.id}>
+                    <button
+                      type="button"
+                      onClick={() => scrollToChannel(channel.id)}
+                      className="w-full text-left py-3 pl-4 border-l-2 transition-colors duration-300"
+                      style={{
+                        borderColor: isActive ? channel.accent : '#e4e4e7',
+                      }}
+                    >
+                      <span
+                        className="block text-sm font-bold tracking-tight transition-colors duration-300"
+                        style={{ color: isActive ? channel.accent : '#71717a' }}
+                      >
+                        {channel.label}
+                      </span>
+                      <span className="block text-xs text-zinc-400 font-light mt-0.5">
+                        {channel.items.length} {channel.items.length === 1 ? 'item' : 'items'}
+                      </span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
+
+          {/* Mobile current-section pill */}
+          <div className="md:hidden sticky top-2 z-20 flex justify-center mb-2">
+            {CHANNELS.map((channel) => {
+              if (channel.id !== activeId) return null
+              return (
+                <span
+                  key={channel.id}
+                  className="inline-flex items-center gap-2 bg-white/90 backdrop-blur border border-zinc-200 shadow-sm rounded-full px-4 py-1.5 text-xs font-bold tracking-wide transition-colors duration-300"
+                  style={{ color: channel.accent }}
                 >
-                  <div>
-                    <span
-                      className="text-base sm:text-lg font-bold tracking-tight"
-                      style={{ color: isOpen ? channel.accent : '#09090b' }}
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: channel.accent }} />
+                  {channel.label}
+                </span>
+              )
+            })}
+          </div>
+
+          {/* Content — every channel is rendered and expanded; scrolling reveals each in turn */}
+          <div className="space-y-16">
+            {CHANNELS.map((channel) => {
+              const isRevealed = revealedIds.has(channel.id)
+              return (
+                <div
+                  key={channel.id}
+                  ref={(el) => (sectionRefs.current[channel.id] = el)}
+                  data-channel-id={channel.id}
+                  className={`feature-section ${isRevealed ? 'in-view' : ''}`}
+                >
+                  {/* Section header — informational only, nothing to click */}
+                  <div className="flex items-baseline gap-3 mb-6">
+                    <h3
+                      className="text-lg sm:text-xl font-bold tracking-tight"
+                      style={{ color: channel.accent }}
                     >
                       {channel.label}
-                      <span className="ml-1.5 font-normal text-zinc-400 text-sm">
-                        {channel.items.length}
-                      </span>
-                    </span>
-                    <p className="text-sm text-zinc-500 font-light mt-0.5">
+                    </h3>
+                    <span className="text-sm text-zinc-400 font-light">
                       {channel.blurb}
-                    </p>
+                    </span>
                   </div>
-                  <ChevronDown
-                    className={`chevron w-5 h-5 shrink-0 ${isOpen ? 'open' : ''}`}
-                    style={{ color: isOpen ? channel.accent : '#a1a1aa' }}
-                    strokeWidth={2}
-                  />
-                </button>
 
-                <div className={`accordion-content ${isOpen ? 'open' : ''}`}>
-                  <div>
-                    <div className="px-5 sm:px-6 pb-6">
-                      {channel.id === 'activities' ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          {channel.items.map((item) => {
-                            const Icon = item.icon
-                            return (
+                  {channel.id === 'activities' ? (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {channel.items.map((item, i) => {
+                        const Icon = item.icon
+                        return (
+                          <div
+                            key={item.name}
+                            className="activity-card reveal-item group relative bg-zinc-50 border border-zinc-200 p-6 transition-all duration-300 hover:bg-white hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)]"
+                            style={{ transitionDelay: isRevealed ? `${i * 70}ms` : '0ms' }}
+                          >
+                            <div className="flex items-start justify-between mb-5">
                               <div
-                                key={item.name}
-                                className="activity-card group relative bg-zinc-50 border border-zinc-200 p-6 transition-all duration-300 hover:bg-white hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)]"
+                                className="w-10 h-10 flex items-center justify-center rounded-xs shadow-xs"
+                                style={{ backgroundColor: '#18181b' }}
                               >
-                                <div className="flex items-start justify-between mb-5">
-                                  <div
-                                    className="w-10 h-10 flex items-center justify-center rounded-xs shadow-xs"
-                                    style={{ backgroundColor: '#18181b' }}
-                                  >
-                                    <Icon className="w-4.5 h-4.5 text-white" strokeWidth={1.5} />
-                                  </div>
-                                  <span
-                                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    style={{ color: channel.accent }}
-                                  >
-                                    <WaveBars />
-                                  </span>
-                                </div>
-
-                                <h3 className="text-base font-bold text-zinc-950 tracking-tight mb-2">
-                                  {item.name}
-                                </h3>
-
-                                <p className="text-[11px] font-semibold mb-3" style={{ color: channel.accent }}>
-                                  {item.spec}
-                                </p>
-
-                                <p className="text-zinc-600 text-sm font-light leading-relaxed">
-                                  {item.desc}
-                                </p>
+                                <Icon className="w-4.5 h-4.5 text-white" strokeWidth={1.5} />
                               </div>
-                            )
-                          })}
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {channel.items.map((item) => {
-                            const Icon = item.icon
-                            return (
-                              <div
-                                key={item.name}
-                                className="flex gap-4 p-5 border-l-2 bg-zinc-50"
-                                style={{ borderColor: channel.accent }}
+                              <span
+                                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                style={{ color: channel.accent }}
                               >
-                                <div
-                                  className="w-9 h-9 shrink-0 flex items-center justify-center rounded-xs"
-                                  style={{ backgroundColor: channel.accentSoft }}
-                                >
-                                  <Icon className="w-4.5 h-4.5" style={{ color: channel.accent }} strokeWidth={1.75} />
-                                </div>
-                                <div>
-                                  <div className="flex items-baseline gap-2 mb-1">
-                                    <h3 className="text-base font-bold text-zinc-950 tracking-tight">
-                                      {item.name}
-                                    </h3>
-                                    <span className="text-[11px] font-semibold" style={{ color: channel.accent }}>
-                                      {item.spec}
-                                    </span>
-                                  </div>
-                                  <p className="text-zinc-600 text-sm font-light leading-relaxed">
-                                    {item.desc}
-                                  </p>
-                                </div>
-                              </div>
-                            )
-                          })}
-                        </div>
-                      )}
+                                <WaveBars />
+                              </span>
+                            </div>
 
-                      {channel.id === 'activities' && (
-                        <p className="text-sm text-zinc-500 font-light mt-5">
-                          Plus role-plays, mock interviews and storytelling — new formats added every week.
-                        </p>
-                      )}
+                            <h4 className="text-base font-bold text-zinc-950 tracking-tight mb-2">
+                              {item.name}
+                            </h4>
+
+                            <p className="text-[11px] font-semibold mb-3" style={{ color: channel.accent }}>
+                              {item.spec}
+                            </p>
+
+                            <p className="text-zinc-600 text-sm font-light leading-relaxed">
+                              {item.desc}
+                            </p>
+                          </div>
+                        )
+                      })}
                     </div>
-                  </div>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {channel.items.map((item, i) => {
+                        const Icon = item.icon
+                        return (
+                          <div
+                            key={item.name}
+                            className="reveal-item flex gap-4 p-5 border-l-2 bg-zinc-50"
+                            style={{
+                              borderColor: channel.accent,
+                              transitionDelay: isRevealed ? `${i * 70}ms` : '0ms',
+                            }}
+                          >
+                            <div
+                              className="w-9 h-9 shrink-0 flex items-center justify-center rounded-xs"
+                              style={{ backgroundColor: channel.accentSoft }}
+                            >
+                              <Icon className="w-4.5 h-4.5" style={{ color: channel.accent }} strokeWidth={1.75} />
+                            </div>
+                            <div>
+                              <div className="flex items-baseline gap-2 mb-1">
+                                <h4 className="text-base font-bold text-zinc-950 tracking-tight">
+                                  {item.name}
+                                </h4>
+                                <span className="text-[11px] font-semibold" style={{ color: channel.accent }}>
+                                  {item.spec}
+                                </span>
+                              </div>
+                              <p className="text-zinc-600 text-sm font-light leading-relaxed">
+                                {item.desc}
+                              </p>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+
+                  {channel.id === 'activities' && (
+                    <p className="text-sm text-zinc-500 font-light mt-5">
+                      Plus role-plays, mock interviews and storytelling — new formats added every week.
+                    </p>
+                  )}
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
 
         {/* Live now CTA */}
-        <div className="mt-10 relative bg-zinc-950 text-white p-6 md:p-7 border border-zinc-800 overflow-hidden shadow-lg rounded-sm">
+        <div className="mt-16 relative bg-zinc-950 text-white p-6 md:p-7 border border-zinc-800 overflow-hidden shadow-lg rounded-sm">
           <div className="absolute right-0 top-0 w-56 h-56 bg-blue-600/20 rounded-full blur-3xl -z-0"></div>
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
