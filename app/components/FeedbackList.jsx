@@ -10,7 +10,7 @@ const RatingStars = ({ count }) => {
     stars.push(
       <svg
         key={i}
-        className={`w-4 h-4 ${i <= count ? "text-orange-500 fill-orange-500" : "text-zinc-200 dark:text-zinc-800"}`}
+        className={`w-4 h-4 ${i <= count ? "text-amber-500 fill-amber-500" : "text-zinc-200"}`}
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -61,32 +61,32 @@ const FeedbackList = ({ triggerRefresh }) => {
   };
 
   return (
-    <section id="feedback-list" className="bg-white dark:bg-zinc-950 py-16 px-6 border-b border-zinc-200 dark:border-zinc-900 transition-colors duration-300 overflow-hidden relative">
+    <section id="feedback-list" className="bg-zinc-50/70 py-16 px-6 border-b border-zinc-200 transition-colors duration-300 overflow-hidden relative">
       <div className="max-w-7xl mx-auto">
         <Toaster position="bottom-center" />
 
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-flex items-center px-4 py-1.5 border border-orange-600/40 dark:border-orange-500/40 text-xs font-bold uppercase tracking-wider text-orange-600 dark:text-orange-500 mb-5">
+          <span className="inline-flex items-center px-4 py-1.5 border border-blue-600/30 bg-blue-50/80 text-xs font-bold uppercase tracking-wider text-blue-700 mb-5 rounded-sm">
             Community Voices
           </span>
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] text-zinc-950 dark:text-white tracking-tight uppercase mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] text-zinc-950 tracking-tight uppercase mb-6"
             style={{ fontFamily: "'Archivo Black', sans-serif" }}
           >
             What Members<br />
-            <span className="text-orange-600 dark:text-orange-500">
+            <span className="text-blue-600">
               Are Saying
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-zinc-500 dark:text-zinc-400 font-light leading-relaxed">
+          <p className="text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
             Real stories and direct ratings from people building real speaking confidence with UnmuteX.
           </p>
         </div>
 
         {/* Loading State */}
         {loading ? (
-          <div className="flex justify-center py-16 text-zinc-950 dark:text-zinc-50">
+          <div className="flex justify-center py-16 text-blue-600">
             <ThreeDot color="currentColor" size="medium" />
           </div>
         ) : (
@@ -103,7 +103,7 @@ const FeedbackList = ({ triggerRefresh }) => {
                   {reviews.map((item, index) => (
                     <div
                       key={item._id || index}
-                      className="break-inside-avoid block w-full max-w-md sm:max-w-[320px] mx-auto bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 p-6 sm:p-10 hover:border-orange-600/40 dark:hover:border-orange-500/40 hover:-translate-y-2 transition-all duration-500 mb-8"
+                      className="break-inside-avoid block w-full max-w-md sm:max-w-[320px] mx-auto bg-white border border-zinc-200 p-6 sm:p-10 hover:border-blue-600/40 hover:-translate-y-1.5 hover:shadow-lg transition-all duration-500 mb-8 rounded-sm shadow-xs"
                     >
                       {/* Reviewer Meta Header */}
                       <div className="flex items-center gap-4 mb-6">
@@ -111,19 +111,19 @@ const FeedbackList = ({ triggerRefresh }) => {
                           <img
                             src={item.avatar}
                             alt={item.name}
-                            className="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 object-cover"
+                            className="w-12 h-12 rounded-full border border-zinc-200 object-cover"
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-base font-bold text-zinc-900 dark:text-white select-none">
+                          <div className="w-12 h-12 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-base font-bold text-blue-700 select-none">
                             {item.name ? item.name.charAt(0).toUpperCase() : "?"}
                           </div>
                         )}
 
                         <div className="min-w-0">
-                          <h3 className="text-sm font-bold text-zinc-900 dark:text-white tracking-tight break-words">
+                          <h3 className="text-sm font-bold text-zinc-900 tracking-tight break-words">
                             {item.name}
                           </h3>
-                          <p className="text-[11px] text-zinc-400 dark:text-zinc-500 font-medium break-words">
+                          <p className="text-[11px] text-zinc-500 font-medium break-words">
                             {item.role || "Community Member"}
                           </p>
                         </div>
@@ -135,8 +135,8 @@ const FeedbackList = ({ triggerRefresh }) => {
                       </div>
 
                       {/* Review Text */}
-                      <blockquote className="text-zinc-700 dark:text-zinc-200 text-sm font-normal leading-relaxed italic relative">
-                        <span className="text-3xl text-orange-600/30 dark:text-orange-500/30 font-serif absolute -top-4 -left-2 select-none">“</span>
+                      <blockquote className="text-zinc-700 text-sm font-normal leading-relaxed italic relative">
+                        <span className="text-3xl text-blue-600/25 font-serif absolute -top-4 -left-2 select-none">“</span>
                         <span className="relative z-10 pl-4 block break-words">
                           {item.feedback}
                         </span>
@@ -148,7 +148,7 @@ const FeedbackList = ({ triggerRefresh }) => {
 
               {/* Dynamic Gradient Fade Overlay */}
               {!isExpanded && reviews.length > 3 && (
-                <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-zinc-950 dark:via-zinc-950/80 pointer-events-none z-10" />
+                <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-zinc-50 via-zinc-50/80 to-transparent pointer-events-none z-10" />
               )}
             </div>
 
@@ -157,7 +157,7 @@ const FeedbackList = ({ triggerRefresh }) => {
               <div className="flex justify-center mt-12 relative z-20">
                 <button
                   onClick={handleToggle}
-                  className="bg-orange-600 text-white hover:bg-orange-500 active:scale-95 px-8 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-2"
+                  className="bg-blue-600 text-white hover:bg-blue-700 active:scale-95 px-8 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-sm rounded-sm"
                 >
                   {isExpanded ? (
                     <>
@@ -180,7 +180,7 @@ const FeedbackList = ({ triggerRefresh }) => {
 
             {/* Empty State */}
             {reviews.length === 0 && (
-              <div className="text-center text-zinc-400 dark:text-zinc-500 font-light text-sm py-16">
+              <div className="text-center text-zinc-500 font-light text-sm py-16">
                 No feedback submitted yet. Be the first to share your experience below!
               </div>
             )}
@@ -191,4 +191,4 @@ const FeedbackList = ({ triggerRefresh }) => {
   );
 };
 
-export default FeedbackList;
+export default FeedbackList;
