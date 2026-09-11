@@ -50,9 +50,10 @@ export default function Home() {
        <div className="reveal-on-scroll">
         <Features />
       </div>
-       <div className="reveal-on-scroll">
-       <BookCall/>
+      <div className="reveal-on-scroll">
+        <Testimonials />
       </div>
+      
       
       {/* Visual Impact Steps Roadmap */}
       
@@ -60,18 +61,20 @@ export default function Home() {
         <Problem />
       </div> */}
       <div className="reveal-on-scroll">
-          <JourneySteps />
-        </div>
-     
-      <div className="reveal-on-scroll">
         <AboutTeam />
       </div>
       <div className="reveal-on-scroll">
+          <JourneySteps />
+        </div>
+     
+      
+      <div className="reveal-on-scroll">
         <WhoFor />
       </div>
-      <div className="reveal-on-scroll">
-        <Testimonials />
+       <div className="reveal-on-scroll">
+       <BookCall/>
       </div>
+      
       {/* Community Feedbacks List */}
       <div className="reveal-on-scroll">
         <FeedbackList triggerRefresh={triggerRefresh} />
