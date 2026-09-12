@@ -79,7 +79,7 @@ const Hero = () => {
         {/* CTA Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
           <a
-            href="https://wa.me/918269650227?text=Hi%20I'm%20ready%20to%20send%20my%2030-second%20introduction%20video%20and%20join%20*UnmuteX*."
+            href="https://chat.whatsapp.com/LFfWRMhON031qK6OjeFa3k"
             className="w-full sm:w-auto inline-flex justify-center items-center text-white bg-blue-600 hover:bg-blue-500 px-8 py-3.5 text-sm font-bold uppercase tracking-wider shadow-[0_4px_25px_rgba(37,99,235,0.45)] transition-all active:scale-95 rounded-sm"
           >
             Join the Community
